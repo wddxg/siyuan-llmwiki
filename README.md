@@ -1,10 +1,22 @@
 # SiYuan LLM Wiki
 
-基于 [思源笔记](https://b3log.org/siyuan/) 的 AI 知识库构建系统。
+## 参考与致谢
+
+本项目建立在以下工作之上：
+
+| 项目 | 作者 | 说明 |
+|------|------|------|
+| [LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) | [Andrej Karpathy](https://github.com/karpathy) | 核心理念：原始素材是源代码，LLM 是编译器，Wiki 是可执行产物 |
+| [SiYuan Note](https://b3log.org/siyuan/) | [B3log 社区](https://b3log.org) | 底层存储引擎，块级编辑 + 双链 + SQL 查询 |
+| [Model Context Protocol](https://modelcontextprotocol.io/) | [Anthropic](https://github.com/anthropics) | Agent ↔ 工具通信的开放标准 |
+| [siyuan-skill](https://github.com/dazexcl/siyuan-skill) | [dazexcl](https://github.com/dazexcl) | 思源笔记 CLI 技能 |
+| [llm-wiki](https://github.com/anthropics/llm-wiki) | [Anthropic](https://github.com/anthropics) | LLM Wiki 的 Agent 指令参考实现 |
+
+---
+
+基于思源笔记的 AI 知识库构建系统。
 
 把原始素材交给 Agent，自动编译成交叉引用、结构化的 Wiki。知识可查、可审、可增量维护。
-
-> 灵感来自 [Andrej Karpathy 的 LLM Wiki 方案](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)。
 
 ## 效果预览
 
