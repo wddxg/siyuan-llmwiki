@@ -243,8 +243,8 @@ SIYUAN_URL=http://127.0.0.1:6806 SIYUAN_TOKEN=your-token npm start
 
 本仓库提供两个 Agent Skill 文件，可直接安装到支持 Skill 的 Agent 平台：
 
-- `skills/siyuan-skill.SKILL.md` — 思源笔记 CLI 技能
-- `skills/llm-wiki-skill.SKILL.md` — LLM Wiki 编排技能
+- `skills/siyuan-skill.SKILL.md` — 思源笔记 CLI 技能（来自 [dazexcl/siyuan-skill](https://github.com/dazexcl/siyuan-skill)）
+- `skills/llm-wiki-skill.SKILL.md` — LLM Wiki 编排技能（本项目自定义）
 
 ## 工具脚本
 
