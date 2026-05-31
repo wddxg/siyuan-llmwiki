@@ -1,0 +1,16 @@
+{
+  "name": "siyuan-llmwiki-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Formal MCP server plus compatibility bridge for a self-hosted SiYuan LLM Wiki stack",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.5",
+    "express": "^4.21.2",
+    "zod": "^3.25.76"
+  }
+}

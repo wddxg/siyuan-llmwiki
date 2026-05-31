@@ -1,0 +1,60 @@
+services:
+  siyuan:
+    image: b3log/siyuan:latest
+    container_name: siyuan
+    restart: unless-stopped
+    ports:
+      - "${SIYUAN_HOST_PORT:-6806}:6806"
+    environment:
+      PUID: "${PUID:-1000}"
+      PGID: "${PGID:-1001}"
+      TZ: "${TZ:-Asia/Shanghai}"
+    command:
+      - "--workspace=/siyuan/workspace"
+      - "--accessAuthCode=${SIYUAN_ACCESS_AUTH_CODE}"
+    volumes:
+      - ./siyuan/workspace:/siyuan/workspace
+      - ./siyuan/conf:/siyuan/conf
+
+  siyuan-llmwiki-mcp:
+    build:
+      context: ./mcp
+    container_name: siyuan-llmwiki-mcp
+    restart: unless-stopped
+    depends_on:
+      - siyuan
+    ports:
+      - "${MCP_HOST_PORT:-31710}:${MCP_PORT:-31710}"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      TZ: "${TZ:-Asia/Shanghai}"
+      MCP_BIND_HOST: "0.0.0.0"
+      MCP_PORT: "${MCP_PORT:-31710}"
+      MCP_AUTH_TOKEN: "${MCP_AUTH_TOKEN:-}"
+      MCP_LOG_DIR: "/app/logs"
+      MCP_TEMP_DIR: "/app/temp"
+      MCP_IMPORT_DIR: "/app/imports"
+      MCP_EXPORT_DIR: "/app/exports"
+      SIYUAN_URL: "${SIYUAN_INTERNAL_URL:-http://siyuan:6806}"
+      SIYUAN_TOKEN: "${SIYUAN_TOKEN}"
+      SIYUAN_DEFAULT_NOTEBOOK: "${SIYUAN_DEFAULT_NOTEBOOK:-}"
+      SIYUAN_PERMISSION_MODE: "${SIYUAN_PERMISSION_MODE:-whitelist}"
+      SIYUAN_NOTEBOOK_ALLOWLIST: "${SIYUAN_NOTEBOOK_ALLOWLIST:-}"
+      SIYUAN_DELETE_SAFE_MODE: "${SIYUAN_DELETE_SAFE_MODE:-true}"
+      SIYUAN_DELETE_REQUIRE_CONFIRMATION: "${SIYUAN_DELETE_REQUIRE_CONFIRMATION:-true}"
+      SIYUAN_TLS_ALLOW_SELF_SIGNED: "${SIYUAN_TLS_ALLOW_SELF_SIGNED:-false}"
+      SIYUAN_TLS_ALLOWED_HOSTS: "${SIYUAN_TLS_ALLOWED_HOSTS:-localhost,siyuan}"
+      MCP_EMBEDDING_ENABLED: "${MCP_EMBEDDING_ENABLED:-false}"
+      MCP_EMBEDDING_PROVIDER: "${MCP_EMBEDDING_PROVIDER:-openai-compatible}"
+      MCP_EMBEDDING_BASE_URL: "${MCP_EMBEDDING_BASE_URL:-}"
+      MCP_EMBEDDING_API_KEY: "${MCP_EMBEDDING_API_KEY:-}"
+      MCP_EMBEDDING_MODEL: "${MCP_EMBEDDING_MODEL:-}"
+      MCP_EMBEDDING_DIMENSIONS: "${MCP_EMBEDDING_DIMENSIONS:-0}"
+      MCP_EMBEDDING_TOP_K: "${MCP_EMBEDDING_TOP_K:-8}"
+      MCP_EMBEDDING_CACHE_DIR: "${MCP_EMBEDDING_CACHE_DIR:-/app/temp/embeddings}"
+    volumes:
+      - ./data/logs:/app/logs
+      - ./data/temp:/app/temp
+      - ./data/imports:/app/imports
+      - ./data/exports:/app/exports

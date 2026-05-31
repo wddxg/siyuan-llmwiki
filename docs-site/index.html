@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SiYuan LLM Wiki — 示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0d1117; --surface: #161b22; --border: #30363d;
+      --text: #e6edf3; --text2: #8b949e; --accent: #58a6ff;
+      --green: #3fb950; --purple: #bc8cff; --orange: #d29922;
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); display: flex; height: 100vh; }
+    /* Sidebar */
+    .sidebar { width: 300px; min-width: 300px; background: var(--surface); border-right: 1px solid var(--border); overflow-y: auto; padding: 20px; }
+    .sidebar h1 { font-size: 18px; margin-bottom: 4px; }
+    .sidebar .subtitle { color: var(--text2); font-size: 13px; margin-bottom: 20px; }
+    .sidebar .section { margin-bottom: 16px; }
+    .sidebar .section-title { font-size: 11px; text-transform: uppercase; color: var(--text2); letter-spacing: 1px; margin-bottom: 8px; font-weight: 600; }
+    .sidebar .item { display: block; padding: 6px 10px; border-radius: 6px; color: var(--text); text-decoration: none; font-size: 14px; cursor: pointer; transition: background 0.15s; }
+    .sidebar .item:hover { background: var(--border); }
+    .sidebar .item.active { background: #1f6feb22; color: var(--accent); }
+    .sidebar .item .badge { float: right; font-size: 11px; padding: 1px 6px; border-radius: 10px; }
+    .badge-entity { background: #238636; color: #fff; }
+    .badge-concept { background: #8957e5; color: #fff; }
+    .badge-comparison { background: #d29922; color: #000; }
+    .badge-query { background: #1f6feb; color: #fff; }
+    /* Main */
+    .main { flex: 1; overflow-y: auto; padding: 40px; }
+    .main .content { max-width: 800px; margin: 0 auto; }
+    .main h1 { font-size: 28px; margin-bottom: 16px; }
+    .main h2 { font-size: 22px; margin: 24px 0 12px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+    .main h3 { font-size: 18px; margin: 20px 0 8px; color: var(--accent); }
+    .main p { line-height: 1.7; margin-bottom: 12px; }
+    .main ul, .main ol { margin: 8px 0 12px 24px; line-height: 1.7; }
+    .main table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+    .main th, .main td { padding: 8px 12px; border: 1px solid var(--border); text-align: left; }
+    .main th { background: var(--surface); font-weight: 600; }
+    .main code { background: var(--surface); padding: 2px 6px; border-radius: 4px; font-size: 13px; font-family: "SFMono-Regular", Consolas, monospace; }
+    .main pre { background: var(--surface); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 12px 0; border: 1px solid var(--border); }
+    .main pre code { background: none; padding: 0; }
+    .main blockquote { border-left: 3px solid var(--accent); padding-left: 16px; color: var(--text2); margin: 12px 0; }
+    .main a { color: var(--accent); text-decoration: none; }
+    .main a:hover { text-decoration: underline; }
+    .main hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+    .main strong { color: #fff; }
+    .frontmatter { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 20px; font-size: 13px; }
+    .frontmatter .fm-row { display: inline-block; margin-right: 16px; color: var(--text2); }
+    .frontmatter .fm-row strong { color: var(--text); }
+    .tags { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0; }
+    .tag { background: #1f6feb22; color: var(--accent); padding: 2px 8px; border-radius: 12px; font-size: 12px; }
+    .welcome { text-align: center; padding: 60px 20px; }
+    .welcome h1 { font-size: 36px; margin-bottom: 12px; }
+    .welcome p { color: var(--text2); font-size: 16px; max-width: 500px; margin: 0 auto 24px; }
+    .stats { display: flex; gap: 24px; justify-content: center; margin: 24px 0; }
+    .stat { text-align: center; }
+    .stat .num { font-size: 32px; font-weight: 700; color: var(--accent); }
+    .stat .label { font-size: 12px; color: var(--text2); }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h1>SiYuan LLM Wiki</h1>
+    <div class="subtitle">示例知识库 — LLM/AI 领域</div>
+    <div id="nav"></div>
+  </div>
+  <div class="main">
+    <div class="content" id="content">
+      <div class="welcome">
+        <h1>LLM Wiki 示例</h1>
+        <p>基于思源笔记的 AI 知识库构建系统。左侧选择页面查看。</p>
+        <div class="stats">
+          <div class="stat"><div class="num">17</div><div class="label">实体</div></div>
+          <div class="stat"><div class="num">18</div><div class="label">概念</div></div>
+          <div class="stat"><div class="num">7</div><div class="label">对比</div></div>
+          <div class="stat"><div class="num">5</div><div class="label">问答</div></div>
+        </div>
+        <p style="font-size:14px; margin-top:20px;">
+          <a href="https://github.com/sxh-1999/siyuan-llmwiki">GitHub 仓库</a> &middot;
+          <a href="https://github.com/sxh-1999/siyuan-llmwiki/blob/main/docs/zh-CN/quick-start.md">快速开始</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <script>
+    const PAGES = {
+      entities: [
+        { file: 'openai', title: 'OpenAI' },
+        { file: 'anthropic', title: 'Anthropic' },
+        { file: 'andrej-karpathy', title: 'Andrej Karpathy' },
+        { file: 'google-deepmind', title: 'Google DeepMind' },
+        { file: 'langchain', title: 'LangChain' },
+        { file: 'hugging-face', title: 'Hugging Face' },
+        { file: 'mistral-ai', title: 'Mistral AI' },
+        { file: 'meta-ai', title: 'Meta AI' },
+        { file: 'siyuan-note', title: '思源笔记' },
+        { file: 'ruflo', title: 'Ruflo' },
+        { file: 'trading-agents', title: 'TradingAgents' },
+        { file: 'ui-tars', title: 'UI-TARS' },
+        { file: 'copilotkit', title: 'CopilotKit' },
+        { file: 'codegraph', title: 'CodeGraph' },
+        { file: 'gpt-researcher', title: 'GPT-Researcher' },
+        { file: 'context7', title: 'Context7' },
+        { file: 'claude-code', title: 'Claude Code' }
+      ],
+      concepts: [
+        { file: 'transformer-architecture', title: 'Transformer 架构' },
+        { file: 'rag', title: 'RAG（检索增强生成）' },
+        { file: 'prompt-engineering', title: '提示工程' },
+        { file: 'fine-tuning', title: '微调' },
+        { file: 'rlhf', title: 'RLHF' },
+        { file: 'chain-of-thought', title: 'Chain of Thought' },
+        { file: 'vector-database', title: '向量数据库' },
+        { file: 'context-window', title: '上下文窗口' },
+        { file: 'token', title: 'Token' },
+        { file: 'embedding', title: 'Embedding' },
+        { file: 'agent-framework', title: 'Agent 框架' },
+        { file: 'llm-knowledge-base', title: 'LLM 知识库构建' },
+        { file: 'mcp-protocol', title: 'MCP 协议' },
+        { file: 'computer-use-agent', title: 'Computer Use Agent' },
+        { file: 'agent-memory', title: 'Agent 记忆系统' },
+        { file: 'agent-governance', title: 'Agent 治理' },
+        { file: 'deep-research-agent', title: '深度研究 Agent' },
+        { file: 'multimodal-llm', title: '多模态 LLM' }
+      ],
+      comparisons: [
+        { file: 'gpt4o-vs-claude', title: 'GPT-4o vs Claude' },
+        { file: 'rag-vs-finetuning', title: 'RAG vs Fine-tuning' },
+        { file: 'open-vs-closed-source', title: '开源 vs 闭源 LLM' },
+        { file: 'embedding-models', title: 'Embedding 模型对比' },
+        { file: 'agent-frameworks', title: 'Agent 框架对比' },
+        { file: 'agent-ecosystem-2026', title: '2026 Agent 生态全景' },
+        { file: 'agent-protocols', title: 'Agent 协议对比' }
+      ],
+      queries: [
+        { file: 'how-to-choose-llm', title: '如何选择 LLM' },
+        { file: 'rag-or-finetuning', title: 'RAG 还是微调' },
+        { file: 'evaluate-llm-quality', title: '评估 LLM 质量' },
+        { file: 'knowledge-base-best-practices', title: '知识库最佳实践' },
+        { file: 'ai-agent-future', title: 'AI Agent 的未来' }
+      ]
+    };
+
+    const BADGE = { entities: 'badge-entity', concepts: 'badge-concept', comparisons: 'badge-comparison', queries: 'badge-query' };
+    const LABEL = { entities: '实体', concepts: '概念', comparisons: '对比', queries: '问答' };
+
+    function buildNav() {
+      const nav = document.getElementById('nav');
+      for (const [cat, pages] of Object.entries(PAGES)) {
+        const sec = document.createElement('div');
+        sec.className = 'section';
+        sec.innerHTML = `<div class="section-title">${LABEL[cat]} (${pages.length})</div>`;
+        for (const p of pages) {
+          const a = document.createElement('a');
+          a.className = 'item';
+          a.dataset.cat = cat;
+          a.dataset.file = p.file;
+          a.innerHTML = `${p.title} <span class="badge ${BADGE[cat]}">${LABEL[cat]}</span>`;
+          a.onclick = () => loadPage(cat, p.file, a);
+          sec.appendChild(a);
+        }
+        nav.appendChild(sec);
+      }
+    }
+
+    async function loadPage(cat, file, el) {
+      document.querySelectorAll('.item').forEach(i => i.classList.remove('active'));
+      if (el) el.classList.add('active');
+      const url = `wiki/${cat}/${file}.md`;
+      try {
+        const resp = await fetch(url);
+        if (!resp.ok) throw new Error(resp.statusText);
+        let md = await resp.text();
+        // Parse frontmatter
+        let fmHtml = '';
+        if (md.startsWith('---')) {
+          const end = md.indexOf('---', 3);
+          if (end > 0) {
+            const fm = md.slice(3, end);
+            md = md.slice(end + 3).trim();
+            const tags = fm.match(/tags:\s*\[([^\]]*)\]/);
+            const summary = fm.match(/summary:\s*"([^"]*)"/);
+            const conf = fm.match(/confidence:\s*(\w+)/);
+            const parts = [];
+            if (conf) parts.push(`<span class="fm-row"><strong>置信度:</strong> ${conf[1]}</span>`);
+            if (summary) parts.push(`<br><span class="fm-row"><strong>摘要:</strong> ${summary[1]}</span>`);
+            if (tags) {
+              const tagList = tags[1].split(',').map(t => t.trim().replace(/"/g, ''));
+              parts.push(`<div class="tags">${tagList.map(t => `<span class="tag">${t}</span>`).join('')}</div>`);
+            }
+            fmHtml = parts.length ? `<div class="frontmatter">${parts.join('')}</div>` : '';
+          }
+        }
+        // Convert wiki links to clickable
+        md = md.replace(/\[\[([^\]]+)\]\]/g, (m, title) => {
+          return `<a href="javascript:void(0)" onclick="searchAndLoad('${title}')" title="跳转到: ${title}">${title}</a>`;
+        });
+        document.getElementById('content').innerHTML = fmHtml + marked.parse(md);
+        document.getElementById('content').scrollTop = 0;
+      } catch (e) {
+        document.getElementById('content').innerHTML = `<h2>加载失败</h2><p>${e.message}</p>`;
+      }
+    }
+
+    function searchAndLoad(title) {
+      for (const [cat, pages] of Object.entries(PAGES)) {
+        for (const p of pages) {
+          if (p.title === title || p.file === title.toLowerCase().replace(/\s+/g, '-')) {
+            const el = document.querySelector(`[data-cat="${cat}"][data-file="${p.file}"]`);
+            loadPage(cat, p.file, el);
+            return;
+          }
+        }
+      }
+    }
+
+    buildNav();
+  </script>
+</body>
+</html>
