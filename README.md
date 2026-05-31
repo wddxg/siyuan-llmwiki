@@ -204,7 +204,7 @@ Agent 读结构 → 检查缺页/孤立页/缺失引用 → 检查原始素材�
 
 查看 [examples/README.md](examples/README.md) 了解详情。
 
-在线演示：[GitHub Pages](https://sxh-1999.github.io/siyuan-llmwiki/)
+在线演示：[GitHub Pages](https://wddxg.github.io/siyuan-llmwiki/)
 
 ## 部署方式
 
@@ -238,7 +238,6 @@ SIYUAN_URL=http://127.0.0.1:6806 SIYUAN_TOKEN=your-token npm start
 - [Agent 配置指南](docs/zh-CN/agent-setup.md)
 - [MCP 工具详解](docs/zh-CN/mcp-tools.md)
 - [Wiki 概念说明](docs/zh-CN/wiki-concepts.md)
-- [English Docs](docs/en/)
 
 ## Skills
 

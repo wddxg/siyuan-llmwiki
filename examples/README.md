@@ -83,4 +83,4 @@ examples/
 
 ## 在线演示
 
-访问 [GitHub Pages](https://sxh-1999.github.io/siyuan-llmwiki/) 查看在线演示。
+访问 [GitHub Pages](https://wddxg.github.io/siyuan-llmwiki/) 查看在线演示。

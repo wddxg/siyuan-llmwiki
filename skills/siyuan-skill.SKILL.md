@@ -8,9 +8,9 @@ metadata: {"openclaw":{"emoji":"📝","requires":{"bins":["node"],"env":["SIYUAN
 
 > **运行要求：** Node.js >= 14.0.0，思源笔记 >= 3.6.0
 > 
-> **安装：** 从 [ClawHub](https://clawhub.ai/dazexcl/siyuan-skill) 下载，详见 [安装配置指南](references/config/setup.md)
+> **安装：** 从 [ClawHub](https://clawhub.ai/dazexcl/siyuan-skill) 下载
 > 
-> **环境变量：** 参考 [环境变量文档](references/config/environment.md)
+> **完整文档：** [GitHub 仓库](https://github.com/dazexcl/siyuan-skill)
 
 ---
 
@@ -152,7 +152,7 @@ siyuan exists --path "/目录/文档标题"
 | 路径指定 | 创建多级目录 | `siyuan create --path "笔记本/A/B/C" "内容"` |
 | 目录下创建 | 批量创建 | `siyuan create --path "笔记本/目录/" "标题" "内容"` |
 
-> 📋 详细用法见 [create 命令文档](references/commands/create.md)
+> 📋 详见 [GitHub 仓库](https://github.com/dazexcl/siyuan-skill)
 
 ## 内容修改
 
@@ -184,7 +184,7 @@ siyuan icon <docId> --get            # 获取图标
 siyuan icon <docId> --remove         # 移除图标
 ```
 
-> 📋 完整 emoji 编码表见 [图标命令文档](references/commands/icon.md)
+> 📋 详见 [GitHub 仓库](https://github.com/dazexcl/siyuan-skill)
 
 ## 文档格式
 
@@ -219,7 +219,7 @@ siyuan create "标题" "第一段## 二级标题 内容"
 {{ SELECT * FROM blocks WHERE type = 'd' ORDER BY updated DESC LIMIT 5 }}
 ```
 
-> 📋 完整规范见 [书写指南](references/advanced/writing-guide.md) 和 [最佳实践](references/advanced/best-practices.md)
+> 📋 详见 [GitHub 仓库](https://github.com/dazexcl/siyuan-skill)
 
 ---
 
@@ -254,7 +254,7 @@ siyuan search "关键词" --mode semantic
 siyuan search "关键词" --mode semantic --threshold 0.7
 ```
 
-> 📋 详细配置见 [向量搜索文档](references/advanced/vector-search.md)
+> 📋 详见 [GitHub 仓库](https://github.com/dazexcl/siyuan-skill)
 
 ## NLP 分析
 
@@ -262,7 +262,7 @@ siyuan search "关键词" --mode semantic --threshold 0.7
 siyuan nlp "文本" --tasks tokenize,keywords
 ```
 
-> 📋 详细用法见 [NLP 文档](references/commands/nlp.md)
+> 📋 详见 [GitHub 仓库](https://github.com/dazexcl/siyuan-skill)
 
 ---
 
@@ -275,7 +275,7 @@ siyuan nlp "文本" --tasks tokenize,keywords
 - **Token 安全**：SIYUAN_TOKEN 仅从环境变量或 config.json 读取，技能本身绝不会修改或写入 token
 - **可选功能**：QDRANT_URL、OLLAMA_BASE_URL 为可选配置，如不需要向量搜索/NLP 功能，无需配置这些变量
 
-> 📋 详细安全配置见 [配置文档](references/config/advanced.md)
+> 📋 详细安全配置见 详见 [GitHub 仓库](https://github.com/dazexcl/siyuan-skill)
 
 ## 安全声明
 
@@ -303,13 +303,6 @@ siyuan nlp "文本" --tasks tokenize,keywords
 
 # 参考文档
 
-- [安装配置指南](references/config/setup.md)
-- [环境变量配置](references/config/environment.md)
-- [命令详细文档](references/commands/)
-- [高级功能](references/advanced/)
-- [书写指南（内容格式规范）](references/advanced/writing-guide.md)
-- [最佳实践](references/advanced/best-practices.md)
-- [使用指南（故障排除）](references/advanced/usage-guide.md)
-- [思源笔记 API](https://github.com/siyuan-note/siyuan/blob/master/API_zh_CN.md)
+完整文档请访问：[https://github.com/dazexcl/siyuan-skill](https://github.com/dazexcl/siyuan-skill)
 
 ---
